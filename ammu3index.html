@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iloveyousoomuchammu ❤️</title>
+    <style>
+        body {
+            /* --- THE BACKGROUND MAGIC --- */
+            /* This links to your 'ammu.png' file and adds a 70% dark tint so the text is still readable! */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('ammu.png');
+            background-size: cover;        /* Covers the whole screen */
+            background-position: center;    /* Keeps her faces centered */
+            background-attachment: fixed;   /* Scrolling feels cool */
+            background-repeat: no-repeat;
+            
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* --- HOME SCREEN STYLES --- */
+        #home-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Helps against background */
+        }
+        .subtitle {
+            color: #87cefa;
+            font-style: italic;
+            margin-bottom: 60px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .gift-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .gift-wrapper {
+            cursor: pointer;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            transition: transform 0.3s ease;
+        }
+        .gift-wrapper:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+        .gift-box {
+            width: 100%;
+            height: 100%;
+            background-color: #ff4d4d;
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #fff;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 100%;
+            background-color: #fff;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .gift-lid {
+            width: 110%;
+            height: 40px;
+            background-color: #cc0000;
+            position: absolute;
+            top: -10px;
+            left: -5%;
+            border-radius: 5px;
+            z-index: 2;
+            transition: all 1s ease;
+        }
+        .gift-lid::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #e6e6e6;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .gift-2 { background-color: #333; }
+        .gift-2 .gift-lid { background-color: #1a1a1a; }
+        .gift-3 { background-color: #87cefa; }
+        .gift-3 .gift-lid { background-color: #5ca0d3; }
+        .gift-4 { background-color: #ffd700; }
+        .gift-4 .gift-lid { background-color: #ccac00; }
+        .gift-label {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .open-animation .gift-lid {
+            transform: translateY(-80px) rotate(15deg);
+            opacity: 0;
+        }
+        .open-animation .gift-box {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        /* --- NANA SCREEN STYLES (Reasons) --- */
+        .reason-container {
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            max-width: 800px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background-color: rgba(26, 26, 26, 0.85); /* Semi-transparent against background */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .reason-title {
+            color: #87cefa;
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .reason-text {
+            font-size: 1.2em;
+            color: #ccc;
+        }
+        .massive-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .list-item {
+            background-color: #121212;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 1em;
+            color: #ffb3b3;
+            border: 1px solid #ff4d4d;
+            transition: 0.3s;
+        }
+        .list-item:hover {
+            background-color: #ff4d4d;
+            color: #121212;
+            transform: scale(1.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #555;
+            border-radius: 5px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            font-family: inherit;
+            font-size: 1em;
+        }
+        .back-button:hover {
+            background-color: #ff4d4d;
+            border-color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="home-screen">
+        <h1>For Ammu</h1>
+        <p class="subtitle">"However far away, I will always love you."</p>
+
+        <div class="gift-container">
+            <div class="gift-wrapper" onclick="openGift(this, 'nana-screen')">
+                <div class="gift-box">
+                    <div class="gift-lid"></div>
+                </div>
+                <div class="gift-label">Gift 1</div>
+            </div>
+
+            <div class="gift-wrapper">
+                <div class="gift-box gift-2">
+                    <div class="gift-lid"></div>
+                </div>
+                <div class="gift-label">Gift 2</div>
+            </div>
+
+            <div class="gift-wrapper">
+                <div class="gift-box gift-3">
+                    <div class="gift-lid"></div>
+                </div>
+                <div class="gift-label">Gift 3</div>
+            </div>
+
+            <div class="gift-wrapper">
+                <div class="gift-box gift-4">
+                    <div class="gift-lid"></div>
+                </div>
+                <div class="gift-label">Gift 4</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nana-screen" style="display: none;">
+        <h1>3 Reasons Why I Love You Soooooo Much</h1>
+
+        <div class="reason-container">
+            <div class="reason-title">1. Your Beauty</div>
+            <div class="reason-text">You are the most gorgeous person I know, inside and out.</div>
+        </div>
+
+        <div class="reason-container">
+            <div class="reason-title">2. Your Kindness</div>
+            <div class="reason-text">Your gentle heart and the way you care for everyone around you.</div>
+        </div>
+
+        <div class="reason-container">
+            <div class="reason-title">3. Everything Else</div>
+            <div class="massive-list">
+                <span class="list-item">your smile</span><span class="list-item">your eyes</span><span class="list-item">the way you look at me</span><span class="list-item">your patience</span><span class="list-item">your kindness</span><span class="list-item">your voice</span><span class="list-item">how incredibly smart you are</span><span class="list-item">how beautiful you are</span><span class="list-item">how you care</span><span class="list-item">your honesty</span><span class="list-item">your touch</span><span class="list-item">the way you listen</span><span class="list-item">your big heart</span><span class="list-item">your laugh</span><span class="list-item">your soul</span><span class="list-item">how you make things better</span><span class="list-item">how you understand</span><span class="list-item">your warmth</span><span class="list-item">the way you remember details</span><span class="list-item">your random texts</span><span class="list-item">how you hold my hand</span><span class="list-item">your voice notes</span><span class="list-item">the way you make me laugh</span><span class="list-item">the way you look sleepy</span><span class="list-item">how you comfort me</span><span class="list-item">the way you look in my eyes</span><span class="list-item">your strength</span><span class="list-item">your soft heart</span><span class="list-item">how you value small things</span><span class="list-item">the way you say "I love you"</span><span class="list-item">your hands</span><span class="list-item">the way you inspire me</span><span class="list-item">how you look when you're mad</span><span class="list-item">how you fix broken things</span><span class="list-item">the way you heal me</span><span class="list-item">how you love me despite everything</span><span class="list-item">your inner child</span><span class="list-item">your courage</span><span class="list-item">the way you express love</span><span class="list-item">the way you get excited</span><span class="list-item">how you've changed me</span><span class="list-item">the way you remind me of home</span><span class="list-item">the way you still chose me</span><span class="list-item">the way you love me even when I'm unloveable</span><span class="list-item">because you're you</span>
+            </div>
+        </div>
+
+        <button class="back-button" onclick="goHome('nana-screen')">← Back to Gifts</button>
+    </div>
+
+    <script>
+        // Opens the gift and switches the screen
+        function openGift(element, targetScreenId) {
+            element.classList.add('open-animation');
+            
+            setTimeout(function() {
+                // Hide home screen
+                document.getElementById('home-screen').style.display = 'none';
+                // Show target screen
+                document.getElementById(targetScreenId).style.display = 'block';
+                // Reset the gift animation so it's closed if they go back
+                element.classList.remove('open-animation');
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }, 1200);
+        }
+
+        // Goes back to the home screen
+        function goHome(currentScreenId) {
+            // Hide current screen
+            document.getElementById(currentScreenId).style.display = 'none';
+            // Show home screen
+            document.getElementById('home-screen').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
